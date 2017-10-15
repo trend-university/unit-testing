@@ -3,3 +3,9 @@ allprojects {
     group 'com.trendmicro.course.unittesting'
     version '0.0.1'
 }
+
+subprojects {
+
+    
+
+}
