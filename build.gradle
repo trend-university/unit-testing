@@ -1,11 +1,37 @@
-
 allprojects {
     group 'com.trendmicro.course.unittesting'
     version '0.0.1'
 }
 
-subprojects {
+subprojects { subproject ->
 
-    
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation" << "-Werror"
+            options.encoding = 'UTF-8'
+        }
+        // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html
+        tasks.withType(Test) {
+            testLogging.showStandardStreams = true
+            beforeTest { descriptor ->
+                logger.lifecycle("Test: [" + descriptor.className + "] . " + descriptor.name + "() " + "[Start]")
+            }
+            // https://docs.gradle.org/current/javadoc/org/gradle/api/tasks/testing/TestResult.html
+            afterTest { descriptor, result ->
+                logger.lifecycle("Test: [" + descriptor.className + "] . " + descriptor.name + "() " + "[Done]"
+                        + ", result = " + result.resultType)
+                if (result.exception) {
+                    result.exception.printStackTrace()
+                }
+            }
+        }
+    }
 
 }
