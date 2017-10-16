@@ -2,3 +2,4 @@ rootProject.name = 'unit-testing'
 
 include ':test-basic'
 include ':test-double'
+include ':test-spring-rest'
