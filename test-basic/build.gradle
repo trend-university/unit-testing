@@ -3,3 +3,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
 }
+
+
+test {
+    include 'com/trendmicro/course/unittesting/**/*Test.class'
+
+}
+
