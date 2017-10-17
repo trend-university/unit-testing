@@ -2,7 +2,7 @@ package com.trendmicro.course.unittesting.basic;
 
 import org.junit.Test;
 
-public class TestAdder {
+public class AdderTest {
 
   @Test
   public void testSumPositiveNumbersOneAndOne() {
