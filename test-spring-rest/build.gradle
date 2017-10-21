@@ -1,11 +1,16 @@
+plugins {
+    id "org.springframework.boot" version "1.5.8.RELEASE"
+}
+
+apply plugin: 'org.springframework.boot'
+
 dependencies {
 
-    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.21'
-    compile group: 'org.springframework', name: 'spring-context-support', version: '4.3.10.RELEASE'
+    compile("org.springframework.boot:spring-boot-starter-web")
 
+    testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile 'junit:junit:4.12'
-    testCompile group: 'org.springframework', name: 'spring-test', version: '4.3.10.RELEASE'
     testCompile group: 'org.mockito', name: 'mockito-core', version: '2.+'
-    testCompile group: 'com.h2database', name: 'h2', version: '1.4.193'
+    testCompile group: 'com.h2database', name: 'h2', version: '1.4.196'
 
 }

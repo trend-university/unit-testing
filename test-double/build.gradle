@@ -3,5 +3,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile group: 'io.github.benas', name: 'random-beans', version: '3.6.0'
     testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.13'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.+'
 
 }

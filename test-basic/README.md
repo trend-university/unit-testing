@@ -12,4 +12,4 @@ TestNG is a testing framework inspired from JUnit and NUnit but introducing some
 > for TestNG features, refer [testng documentation](http://testng.org/doc/documentation-main.html#methods) for details.
 
 ### other references
-* [Gradle Tesg Task](https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html)
+* [Gradle Test Task](https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html)
