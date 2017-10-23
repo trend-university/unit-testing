@@ -1,10 +1,12 @@
 package com.trendmciro.course.unittesting.springrest.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import com.trendmciro.course.unittesting.springrest.dao.CustomerDao;
 import com.trendmciro.course.unittesting.springrest.entity.Customer;
+import com.trendmciro.course.unittesting.springrest.integration.ExternalComponentA;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -19,6 +21,11 @@ public class CustomerServiceTest {
   @Mock
   private CustomerDao dao;
 
+  @Mock
+  private ExternalComponentA componentA;
+
+  private static Customer CUSTOMER_1 = new Customer("jimmy", "zhou");
+
   @Before
   public void setUp() throws Exception {
     MockitoAnnotations.initMocks(this);
@@ -32,7 +39,17 @@ public class CustomerServiceTest {
 
     assertEquals("chad", customer.getFirstName());
     assertEquals("chen", customer.getLastName());
-
   }
 
+  @Test
+  public void create_success() throws Exception {
+    when(componentA.validateCustomer(any())).thenReturn(true);
+    service.create(CUSTOMER_1);
+  }
+
+  @Test(expected = RuntimeException.class)
+  public void create_customer_not_valid() throws Exception {
+    when(componentA.validateCustomer(any())).thenReturn(false);
+    service.create(CUSTOMER_1);
+  }
 }

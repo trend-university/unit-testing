@@ -21,6 +21,14 @@ public class ExceptionResponseDTO {
     this.exception = ex.getClass().getName();
   }
 
+  public ExceptionResponseDTO(String path, int status, RuntimeException ex) {
+    this.path = path;
+    this.timestamp = LocalDateTime.now().toString();
+    this.status = status;
+    this.errMessage = ex.getMessage();
+    this.exception = ex.getClass().getName();
+  }
+
   public String getPath() {
     return path;
   }

@@ -21,4 +21,11 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     return new ExceptionResponseDTO(req.getRequestURL().toString(), HttpStatus.NOT_FOUND.value(), ex);
   }
 
+  @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+  @ExceptionHandler({RuntimeException.class})
+  @ResponseBody
+  public ExceptionResponseDTO handleRuntime(HttpServletRequest req, RuntimeException ex) {
+    return new ExceptionResponseDTO(req.getRequestURL().toString(), HttpStatus.INTERNAL_SERVER_ERROR.value(), ex);
+  }
+
 }

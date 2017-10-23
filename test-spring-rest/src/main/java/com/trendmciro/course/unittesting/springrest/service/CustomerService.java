@@ -4,6 +4,7 @@ import com.trendmciro.course.unittesting.springrest.dao.CustomerDao;
 import com.trendmciro.course.unittesting.springrest.dto.ResponseDTO;
 import com.trendmciro.course.unittesting.springrest.entity.Customer;
 import com.trendmciro.course.unittesting.springrest.exception.NotFoundException;
+import com.trendmciro.course.unittesting.springrest.integration.ExternalComponentA;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,9 @@ public class CustomerService {
   @Autowired
   private CustomerDao dao;
 
+  @Autowired
+  private ExternalComponentA componentA;
+
   public Customer get(Long id) {
     try {
       return dao.get(id);
@@ -32,6 +36,10 @@ public class CustomerService {
   }
 
   public ResponseDTO<Customer> create(Customer customer) {
+    if (!componentA.validateCustomer(customer)) {
+      throw new RuntimeException("validate customer failure");
+    }
+
     Long id = dao.create(customer);
     LOG.info("create customer success, id={}", id);
 
