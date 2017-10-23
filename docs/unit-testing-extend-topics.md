@@ -4,9 +4,9 @@
 * unit testing cases
   * included in modules
 * integration testing cases
-  * use seperated module or project
+  * use separated module or project
 * system testing cases
-  * use seperated project, separated from product code
+  * use separated project, separated from product code
 
 ### test resource management
 * test data
