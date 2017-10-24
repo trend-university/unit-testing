@@ -23,7 +23,10 @@
 * [robot framework](http://robotframework.org) a generic test automation framework for acceptance testing and acceptance test-driven development (ATDD).
 * [cucumber](https://cucumber.io/docs/reference) a tool that supports Behaviour-Driven Development (BDD) - a software development process that aims to enhance software quality and reduce maintenance costs.
 
-#### frontEnd test tools
+#### tool libraries
+* [rest-assured](https://github.com/rest-assured/rest-assured) Java DSL for easy testing of REST services
+
+#### front end test tools
 * [seleniumhq](http://www.seleniumhq.org/) Selenium automates browsers. That's it!
 * [autoitscript](https://www.autoitscript.com/site/autoit/) AutoIt v3 is a freeware BASIC-like scripting language designed for automating the Windows GUI and general scripting.
 
