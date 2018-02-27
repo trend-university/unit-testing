@@ -1,8 +1,7 @@
 package com.trendmicro.course.unittesting.basic.junitsamples;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import com.trendmicro.course.unittesting.basic.junitsamples.Calculator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,15 +9,15 @@ import org.junit.Test;
 public class CalculatorTest {
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
   }
 
   @After
-  public void tearDown() throws Exception {
+  public void tearDown() {
   }
 
   @Test
-  public void evaluate() throws Exception {
+  public void evaluate() {
     Calculator calculator = new Calculator();
     int sum = calculator.evaluate("1+2+3");
     assertEquals(6, sum);

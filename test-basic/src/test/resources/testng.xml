@@ -3,7 +3,7 @@
 
   <test name="Suite 1 Tests">
     <classes>
-      <class name="com.trendmicro.course.unittesting.basic.testngsamples.SimpleTest">
+      <class name="com.trendmicro.course.unittesting.basic.testngsamples.TestGroupTest">
         <methods>
           <include name="aTest"/>
         </methods>

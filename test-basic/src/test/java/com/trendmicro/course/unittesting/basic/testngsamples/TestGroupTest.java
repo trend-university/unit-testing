@@ -3,7 +3,11 @@ package com.trendmicro.course.unittesting.basic.testngsamples;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class SimpleTest {
+/**
+ * demo how to group test cases by testng.
+ * refer gradle test task for how to execute test cases by test group names.
+ */
+public class TestGroupTest {
 
   @BeforeClass
   public void setUp() {

@@ -1,7 +1,5 @@
 package com.trendmicro.course.unittesting.basic.junitsamples;
 
-import com.trendmicro.course.unittesting.basic.junitsamples.Adder;
-import com.trendmicro.course.unittesting.basic.junitsamples.AdderImpl;
 import org.junit.Test;
 
 public class AdderTest {
