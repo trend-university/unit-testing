@@ -2,7 +2,6 @@ package com.trendmicro.course.unittesting.basic.testngsamples;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-import com.trendmicro.course.unittesting.basic.junitsamples.Calculator;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -11,7 +10,7 @@ import org.testng.annotations.Test;
  */
 public class CalculatorParameterTest {
 
-  private Calculator calculator = new Calculator();
+  private CalculatorForTestNg calculator = new CalculatorForTestNg();
 
   // This method will provide data to any test method that declares that its Data Provider
   // is named "test1"
@@ -21,6 +20,10 @@ public class CalculatorParameterTest {
         {"1", 1},
         {"1+2", 3},
         {"1+2+3", 6},
+
+        // below found by pitest
+        {"0+1", 0},
+        {"1+-2", -1},
     };
   }
 
