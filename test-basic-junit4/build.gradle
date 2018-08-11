@@ -7,10 +7,6 @@ dependencies {
     testCompile group: 'org.testng', name: 'testng', version: '6.11'
 }
 
-jacoco {
-    toolVersion = "0.8.1"
-}
-
 pitest {
     targetClasses = ['com.trendmicro.course.unittesting.basic.*']  //by default "${project.group}.*"
     pitestVersion = '1.4.0' //not needed when a default PIT version should be used
