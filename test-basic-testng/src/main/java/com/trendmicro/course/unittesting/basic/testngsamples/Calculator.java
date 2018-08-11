@@ -1,6 +1,6 @@
 package com.trendmicro.course.unittesting.basic.testngsamples;
 
-public class CalculatorForTestNg {
+public class Calculator {
 
   public int evaluate(String expression) {
     int sum = 0;

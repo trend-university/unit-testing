@@ -1,0 +1,43 @@
+dependencies {
+    testCompile group: 'org.testng', name: 'testng', version: '6.11'
+}
+
+test {
+    useTestNG() {
+
+    }
+}
+
+pitest {
+    targetClasses = ['com.trendmicro.course.unittesting.basic.*']  //by default "${project.group}.*"
+    pitestVersion = '1.4.0' //not needed when a default PIT version should be used
+    threads = 4
+    outputFormats = ['XML', 'HTML']
+    timestampedReports = false
+    testPlugin = 'testng'
+    failWhenNoMutations = true
+}
+
+
+task testngWithSuite(type: Test) {
+    useTestNG() {
+        suites("src/test/resources/testng.xml")
+    }
+}
+
+task fastTest(type: Test) {
+    // enable TestNG support (default is JUnit)
+    useTestNG() {
+        // suites("src/test/resources/testng.xml")
+        excludeGroups 'slow'
+        includeGroups 'fast'
+    }
+}
+
+task slowTest(type: Test) {
+    useTestNG() {
+        excludeGroups 'fast'
+        includeGroups 'slow'
+    }
+}
+

@@ -1,5 +1,6 @@
 rootProject.name = 'unit-testing'
 
-include ':test-basic'
+include ':test-basic-junit4'
+include ':test-basic-testng'
 include ':test-doubles'
 include ':test-spring-rest'
