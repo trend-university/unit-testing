@@ -17,5 +17,3 @@ Unit Testing course resources
 * [Python Testing Tools Taxonomy](https://wiki.python.org/moin/PythonTestingToolsTaxonomy)
 * [xunit patterns](http://xunitpatterns.com/)
 * [art of unit testing](http://artofunittesting.com/)
-* [test boundaries vedio](https://www.destroyallsoftware.com/talks/boundaries)
-
