@@ -5,6 +5,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import com.trendmciro.course.unittesting.springrest.dao.CustomerDao;
+import com.trendmciro.course.unittesting.springrest.dto.ResponseDTO;
 import com.trendmciro.course.unittesting.springrest.entity.Customer;
 import com.trendmciro.course.unittesting.springrest.integration.ExternalComponentA;
 import org.junit.Before;
@@ -15,6 +16,8 @@ import org.mockito.MockitoAnnotations;
 
 public class CustomerServiceTest {
 
+  private static Customer CUSTOMER_1 = new Customer("jimmy", "zhou");
+
   @InjectMocks
   private CustomerService service = new CustomerService();
 
@@ -24,8 +27,6 @@ public class CustomerServiceTest {
   @Mock
   private ExternalComponentA componentA;
 
-  private static Customer CUSTOMER_1 = new Customer("jimmy", "zhou");
-
   @Before
   public void setUp() throws Exception {
     MockitoAnnotations.initMocks(this);
@@ -33,8 +34,8 @@ public class CustomerServiceTest {
 
   @Test
   public void get() throws Exception {
-
     when(dao.get(1L)).thenReturn(new Customer("chad", "chen"));
+
     Customer customer = service.get(1L);
 
     assertEquals("chad", customer.getFirstName());
@@ -44,12 +45,16 @@ public class CustomerServiceTest {
   @Test
   public void create_success() throws Exception {
     when(componentA.validateCustomer(any())).thenReturn(true);
-    service.create(CUSTOMER_1);
+
+    ResponseDTO<Customer> dto = service.create(CUSTOMER_1);
+
+    assertEquals(0, dto.getStatus());
   }
 
   @Test(expected = RuntimeException.class)
   public void create_customer_not_valid() throws Exception {
     when(componentA.validateCustomer(any())).thenReturn(false);
+
     service.create(CUSTOMER_1);
   }
 }
