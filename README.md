@@ -2,7 +2,7 @@
 
 ### prerequisite
 * JDK 1.8+ [download site](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-* Intellij IDEA [download site](https://www.jetbrains.com/idea/download/#section=windows)
+* Intellij IDEA [download site](https://www.jetbrains.com/idea/download/)
 * Git (optional) [download site](https://git-scm.com/downloads)
 
 ### initial develop environment steps
