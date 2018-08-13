@@ -4,3 +4,5 @@ include ':test-basic-junit4'
 include ':test-basic-testng'
 include ':test-doubles'
 include ':test-spring-rest'
+include ':test-practice'
+
