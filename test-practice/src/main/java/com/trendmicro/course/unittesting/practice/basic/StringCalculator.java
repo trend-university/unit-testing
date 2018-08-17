@@ -14,19 +14,23 @@ package com.trendmicro.course.unittesting.practice.basic;
  */
 public class StringCalculator {
 
-  /**
-   * initial status: Requirement 1 done
-   */
-  public static int add(String numbers) {
-    String[] numbersArray = numbers.split(",");
-    if (numbersArray.length > 2) {
-      throw new RuntimeException("Up to 2 numbers separated by comma (,) are allowed");
-    } else {
-      for (String number : numbersArray) {
-        Integer.parseInt(number); // If it is not a number, parseInt will throw an exception
-      }
+    /**
+     * initial status: Requirement 1 done
+     */
+    public static int add(String numbers) {
+        if (numbers == null || numbers.isEmpty()) {
+            return 0;
+        }
+        int sumResult = 0;
+
+        String[] numbersArray = numbers.split(",|\n");
+        for (String number : numbersArray) {
+            if (!number.isEmpty()) {
+                sumResult += Integer.parseInt(number);
+            }
+        }
+
+        return sumResult;
     }
-    return 0;
-  }
 
 }
