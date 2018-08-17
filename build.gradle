@@ -24,7 +24,6 @@ subprojects { subproject ->
     }
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation" << "-Werror"
             options.encoding = 'UTF-8'
         }
         // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html
