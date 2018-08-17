@@ -1,4 +1,4 @@
-package com.trendmicro.course.unittesting.practice;
+package com.trendmicro.course.unittesting.practice.basic;
 
 /**
  * <pre>

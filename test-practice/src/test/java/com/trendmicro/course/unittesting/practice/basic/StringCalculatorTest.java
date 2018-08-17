@@ -1,5 +1,6 @@
-package com.trendmicro.course.unittesting.practice;
+package com.trendmicro.course.unittesting.practice.basic;
 
+import com.trendmicro.course.unittesting.practice.basic.StringCalculator;
 import org.junit.Assert;
 import org.junit.Test;
 
