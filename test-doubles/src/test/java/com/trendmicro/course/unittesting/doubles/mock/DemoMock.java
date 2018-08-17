@@ -11,7 +11,8 @@ public class DemoMock {
   @Test
   public void demo() {
     // mock creation
-    List mockedList = mock(List.class);
+    @SuppressWarnings("unchecked")
+    List<String> mockedList = mock(List.class);
 
     // using mock object
     // it does not throw any "unexpected interaction" exception
