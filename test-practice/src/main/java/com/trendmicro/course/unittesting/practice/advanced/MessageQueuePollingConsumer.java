@@ -32,15 +32,15 @@ public class MessageQueuePollingConsumer {
       return 0;
     }
 
-    int tryCount = maxPoolSize - activeCount;
-    LOG.info("foundIdleThread for execute, tryCount={}", tryCount);
+    int tryConsumeCount = maxPoolSize - activeCount;
+    LOG.info("foundIdleThread for execute, tryConsumeCount={}", tryConsumeCount);
 
-    List<Message> messages = receiveMessages(tryCount);
+    List<Message> messages = receiveMessages(tryConsumeCount);
     int consumedCount = messages.size();
     if (consumedCount > 0) {
-      LOG.info("consumeMessagesSuccess, tryCount={}, consumedCount={}",
-          tryCount, consumedCount);
-      messages.forEach(message -> executeMessage(message));
+      LOG.info("consumeMessagesSuccess, tryConsumeCount={}, consumedCount={}",
+          tryConsumeCount, consumedCount);
+      messages.forEach(this::executeMessage);
     }
     return consumedCount;
   }
