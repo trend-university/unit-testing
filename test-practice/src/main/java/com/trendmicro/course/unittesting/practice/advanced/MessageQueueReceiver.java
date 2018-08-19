@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface MessageQueueReceiver {
 
-  List<Message> getMessages(int maxFetchCount);
+  List<Message> receive(int maxFetchCount);
 
 }
 

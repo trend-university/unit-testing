@@ -23,7 +23,7 @@ public class MessageQueuePollingConsumer {
         EXECUTE_POOL_SIZE, EXECUTE_POOL_SIZE, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue());
   }
 
-  public int fetchAndExecute() {
+  public int consume() {
     int maxPoolSize = executor.getMaximumPoolSize();
     int activeCount = executor.getActiveCount();
     if (activeCount >= maxPoolSize) {
@@ -35,7 +35,7 @@ public class MessageQueuePollingConsumer {
     int tryCount = maxPoolSize - activeCount;
     LOG.info("foundIdleThread for execute, tryCount={}", tryCount);
 
-    List<Message> messages = consumeMessages(tryCount);
+    List<Message> messages = receiveMessages(tryCount);
     int consumedCount = messages.size();
     if (consumedCount > 0) {
       LOG.info("consumeMessagesSuccess, tryCount={}, consumedCount={}",
@@ -45,8 +45,8 @@ public class MessageQueuePollingConsumer {
     return consumedCount;
   }
 
-  private List<Message> consumeMessages(int tryConsumeCount) {
-    return messageReceiver.getMessages(tryConsumeCount);
+  private List<Message> receiveMessages(int tryConsumeCount) {
+    return messageReceiver.receive(tryConsumeCount);
   }
 
   private void executeMessage(Message message) {
@@ -56,15 +56,7 @@ public class MessageQueuePollingConsumer {
   }
 
   private void handleMessage(Message message) {
-    String messageId = message.getMessageId();
-    try {
-      LOG.info("handleMessage Start, messageId={}", messageId);
-      messageHandler.handleMessage(message);
-      LOG.info("handleMessage Success, messageId={}", messageId);
-    } catch (Exception e) {
-      LOG.warn("handleMessage Failure, messageId={},exceptionType={}, exceptionMessage={}",
-          messageId, e.getClass().getSimpleName(), e.getMessage());
-    }
+    messageHandler.handleMessage(message);
   }
 
 }
