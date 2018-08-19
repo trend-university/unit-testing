@@ -16,9 +16,7 @@ public class MessageQueuePollingConsumer {
   private MessageQueueReceiver messageReceiver;
   private MessageHandler messageHandler;
 
-  public MessageQueuePollingConsumer(MessageQueueReceiver messageReceiver, MessageHandler messageHandler) {
-    this.messageReceiver = messageReceiver;
-    this.messageHandler = messageHandler;
+  public MessageQueuePollingConsumer() {
     this.executor = new ThreadPoolExecutor(
         EXECUTE_POOL_SIZE, EXECUTE_POOL_SIZE, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue());
   }
@@ -51,12 +49,38 @@ public class MessageQueuePollingConsumer {
 
   private void executeMessage(Message message) {
     LOG.debug("executeMessage Start, messageId={}", message.getMessageId());
+
     executor.execute(() -> handleMessage(message));
+
     LOG.debug("executeMessage Submitted, messageId={}", message.getMessageId());
   }
 
   private void handleMessage(Message message) {
+    String messageId = message.getMessageId();
+
+    LOG.debug("handleMessage Start, messageId={}", messageId);
+    if (messageId == null || messageId.isEmpty()) {
+      LOG.warn("handleMessage Skipped, due messageIs is null or empty");
+      return;
+    }
+
     messageHandler.handleMessage(message);
+    LOG.debug("handleMessage Done, messageId={}", messageId);
   }
 
+  public MessageQueueReceiver getMessageReceiver() {
+    return messageReceiver;
+  }
+
+  public void setMessageReceiver(MessageQueueReceiver messageReceiver) {
+    this.messageReceiver = messageReceiver;
+  }
+
+  public MessageHandler getMessageHandler() {
+    return messageHandler;
+  }
+
+  public void setMessageHandler(MessageHandler messageHandler) {
+    this.messageHandler = messageHandler;
+  }
 }
