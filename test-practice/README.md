@@ -1,5 +1,5 @@
 ## unit test practice
 
 - practice 1. StringCalculator
-- practice 2. MessagePullConsumer
+- practice 2. MessageQueuePollingConsumer
 
