@@ -3,11 +3,13 @@ package com.trendmicro.course.unittesting.practice.advanced;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,31 +45,26 @@ public class MessageQueuePollingConsumerTest {
     int consumeCount = queueConsumer.consume();
 
     Assert.assertEquals(0, consumeCount);
-
-    // mock verify sample
-    verify(messageHandler, never()).handleMessage(any(Message.class));
   }
 
   @Test
   public void consume_receive_one_nonempty_message_should_call_message_handler_once() throws InterruptedException {
-    // stub rule
     when(messageReceiver.receive(anyInt())).thenReturn(buildMessages(1, "testMessageBody"));
 
-    // call
     queueConsumer.consume();
+    TimeUnit.SECONDS.sleep(1);
 
-    // verify
-    Assert.fail();
-  }
-
-  @Test
-  public void consume_receive_eleven_nonempty_messages_consume_count_should_return_ten() {
-    Assert.fail();
+    verify(messageHandler, times(1)).handleMessage(any(Message.class));
   }
 
   @Test
   public void consume_receive_one_empty_message_should_not_call_message_handler() throws InterruptedException {
-    Assert.fail();
+    when(messageReceiver.receive(anyInt())).thenReturn(buildMessages(1, ""));
+
+    queueConsumer.consume();
+    TimeUnit.SECONDS.sleep(1);
+
+    verify(messageHandler, never()).handleMessage(any(Message.class));
   }
 
   private List<Message> buildMessages(int count, String messageBody) {

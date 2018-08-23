@@ -57,10 +57,11 @@ public class MessageQueuePollingConsumer {
 
   private void handleMessage(Message message) {
     String messageId = message.getMessageId();
+    String messageBody = message.getMessageBody();
 
     LOG.debug("handleMessage Start, messageId={}", messageId);
-    if (messageId == null || messageId.isEmpty()) {
-      LOG.warn("handleMessage Skipped, due messageIs is null or empty");
+    if (messageBody == null || messageBody.isEmpty()) {
+      LOG.warn("handleMessage Skipped, due messageBody is null or empty");
       return;
     }
 
